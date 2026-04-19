@@ -70,3 +70,32 @@ button {
     margin-right: 5px;
     cursor: pointer;
 }
+.messages {
+    display: flex;
+    flex-direction: column; /* الرسايل تحت بعض */
+    padding: 10px;
+    background-color: #e5ddd5;
+}
+
+.message {
+    max-width: 70%;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 10px;
+    font-family: sans-serif;
+}
+
+/* رسالتك: يمين وأخضر */
+.my-message {
+    align-self: flex-start; /* عشان إحنا عاملينه rtl فالبداية يمين */
+    background-color: #dcf8c6;
+    border-top-right-radius: 0;
+}
+
+/* رسالة التاني: شمال ورصاصي فاتح */
+.other-message {
+    align-self: flex-end; /* النهاية هي الشمال في الـ rtl */
+    background-color: #ffffff;
+    border-top-left-radius: 0;
+    color: #303030;
+}
