@@ -30,7 +30,7 @@ body {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    background-image: url('blob:https://gemini.google.com/27e20355-bf72-4e93-ae51-a76478d61d79');
+    background-image: url('https://gemini.google.com/share/f563fa09daab');
 }
 #message {
     max-width: 80%;
