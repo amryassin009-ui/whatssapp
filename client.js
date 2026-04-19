@@ -40,3 +40,50 @@ input.onkeypress = (e) => {
         sendMessage();
     }
 };
+socket.on('message_from_server', (data) => {
+    const item = document.createElement('div');
+    item.textContent = data.text;
+    item.classList.add('message');
+
+    // المقارنة اللي بتحدد الاتجاه
+    if (data.senderId === socket.id) {
+        // رسالتي أنا: تروح يمين (أخضر)
+        item.classList.add('my-message');
+    } else {
+        // رسالة الشخص التاني: تروح شمال (أبيض)
+        item.classList.add('other-message');
+    }
+
+    document.getElementById('messages').appendChild(item);
+    // سكرول لتحت تلقائي
+    const msgContainer = document.getElementById('messages');
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+});
+const socket = io();
+const messages = document.getElementById('messages');
+const form = document.getElementById('input-container');
+const input = document.getElementById('input');
+
+form.onsubmit = (e) => {
+    e.preventDefault();
+    if (input.value.trim()) {
+        socket.emit('message_from_client', input.value);
+        input.value = '';
+    }
+};
+
+socket.on('message_from_server', (data) => {
+    const item = document.createElement('div');
+    item.textContent = data.text;
+    item.classList.add('message');
+
+    // اللعبة كلها هنا:
+    if (data.senderId === socket.id) {
+        item.classList.add('my-message'); // رسالتك أنت (أخضر)
+    } else {
+        item.classList.add('other-message'); // رسالة التاني (رصاصي)
+    }
+
+    messages.appendChild(item);
+    messages.scrollTop = messages.scrollHeight;
+});
