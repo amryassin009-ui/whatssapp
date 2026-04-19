@@ -16,3 +16,11 @@ io.on('connection', (socket) => {
 server.listen(5000, () => {
   console.log('Server running on port 5000');
 });
+// جوه الجزء بتاع socket.on('message_from_client')
+socket.on('message_from_client', (msg) => {
+    // بنبعت كائن (Object) فيه النص والـ ID
+    io.emit('message_from_server', { 
+        text: msg, 
+        senderId: socket.id 
+    });
+});
